@@ -81,3 +81,7 @@ In this homework we are going to evaluate the overall workflow using git a GitHu
 - Not include any other file or folder that those needed for the project. For archiving this you can include a .gitignore file with the files you want git to ignore.
 - Add the link to your JupyterBook to GitHub 
 - Complete the contribution statement. 
+
+```python
+
+```

@@ -11,8 +11,8 @@ from scipy.io import wavfile
 
 
 # the IPython magic below must be commented out in the .py file, since it doesn't work there.
-#%matplotlib inline
-#%config InlineBackend.figure_format = 'retina'
+# %matplotlib inline
+# %config InlineBackend.figure_format = 'retina'
 #import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 
@@ -38,9 +38,9 @@ def whiten(strain, interp_psd, dt):
 def write_wavfile(filename,fs,data):
     d = np.int16(data/np.max(np.abs(data)) * 32767 * 0.9)
     wavfile.write(filename,int(fs), d)
+
     
-    
-    
+
 # function that shifts frequency of a band-passed signal
 def reqshift(data,fshift=100,sample_rate=4096):
     """Frequency shift the signal by constant
@@ -132,3 +132,5 @@ def make_plot(det,strain_H1_whitenbp,strain_L1_whitenbp,template_match,time,time
     plt.legend(loc='upper left')
     plt.title(det+' ASD and template around event')
     plt.savefig("figures/"+eventname+"_"+det+"_matchfreq."+plottype)
+
+
