@@ -12,7 +12,7 @@ execute:
 
 # Add visible binder link
 launch_buttons:
-  binderhub_url: "https://mybinder.org/v2/gh/UCB-stat-159-s23/hw04-Group15.git/HEAD"  # The URL for your BinderHub 
+  binderhub_url: "https://mybinder.org/v2/gh/UCB-stat-159-s23/hw04-Group15.git/main?labpath=LOSC_Event_tutorial.ipynb"  # The URL for your BinderHub 
   
 # Define the name of the latex output file for PDF builds
 latex:
