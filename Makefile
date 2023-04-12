@@ -1,15 +1,24 @@
 # Create targets
 
-env: 
-	conda create -n ligo python=3.8
-	conda activate ligo
-	python -m ipykernel install --user --name ligo --display-name "IPython - ligo"
-# conda env export --from-history > environment.yml
+.ONESHELL:
+SHELL = /bin/bash
+
+create_environment :
+	source /srv/conda/etc/profile.d/conda.sh
+	conda env create -f environment.yml 
+	conda activate notebook
+	conda install ipykernel
+	python -m ipykernel install --user --name make-env --display-name "IPython - Make"
+
 
 html:
-	
+	jupyter-book build .
+
+## clean             : Remove output files
+.PHONY : clean
 
 clean:
-	rm -r figures 
-	rm -r audio 
-	rm -r _build
+	rm -rf figures
+	rm -rf audio 
+	rm -rf _build/html/
+	rm -rf _build
