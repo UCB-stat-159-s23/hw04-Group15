@@ -1,5 +1,5 @@
-from ligotools import utils
 from ligotools import readligo
+from ligotools import utils
 import numpy as np
 import matplotlib.mlab as mlab
 from scipy import signal
@@ -23,8 +23,7 @@ fband = event['fband']
 strain_H1, time_H1, chan_dict_H1 = readligo.loaddata("data/"+fn_H1, 'H1')
 strain_L1, time_L1, chan_dict_L1 = readligo.loaddata("data/"+fn_L1, 'L1')
 
-#strain, gpsStart, ts, qmask, shortnameList, injmask, injnameList = rl.read_hdf5(file_H1)[]
-
+NFFT = 4*fs
 Pxx_H1, freqs = mlab.psd(strain_H1, Fs = fs, NFFT = NFFT)
 Pxx_L1, freqs = mlab.psd(strain_L1, Fs = fs, NFFT = NFFT)
 psd_H1 = interp1d(freqs, Pxx_H1)
@@ -34,8 +33,8 @@ time = time_H1 # H1 and L1 share the same time vector
 dt =  time[1]-time[0] 
 
 # create H1 and L1 whiten file
-white_H1 = utils.whiten(strain_H1, psd_H1, dt_H1)
-white_L1 = utils.whiten(strain_L1, psd_L1, dt_L1)
+strain_H1_whiten = utils.whiten(strain_H1, psd_H1, dt)
+strain_L1_whiten = utils.whiten(strain_L1, psd_L1, dt)
 
 # suppress the high frequency noise
 bb, ab = butter(4, [fband[0]*2./fs, fband[1]*2./fs], btype='band')
@@ -51,23 +50,25 @@ wavfile_H1 = utils.write_wavfile("audio/"+eventname+"_H1_whitenbp.wav",int(fs), 
 wavfile_L1 = utils.write_wavfile("audio/"+eventname+"_L1_whitenbp.wav",int(fs), strain_L1_whitenbp[indxd])
 
 def test_whiten():
-    assert white_H1 is not None
-    assert white_L1 is not None
+    assert strain_H1_whiten is not None
+    assert strain_L1_whiten is not None
     # add more tests for whiten
     
 def test_write_wavfile():
     subject = readligo.FileList("./audio")
-	files = subject.list
+    files = subject.list
     assert eventname+"_H1_whitenbp.wav" in files # test if the wavfile is created or not
     assert eventname+"_L1_whitenbp.wav" in files
     
-def test_reqshift():
+def test_reqshift_1():
     fs = 4096
     fshift = 400
     reqshift_H1 = utils.reqshift(strain_H1_whitenbp, fshift, fs)
     reqshift_L1 = utils.reqshift(strain_L1_whitenbp, fshift, fs)
     assert reqshift_H1 is not None
-    assert reqshift_L2 is not None
-    assert type(reqshift_H1) == float # what's the type of the value returned by reqshift?
-    assert type(reqshift_L1) == float
+    assert reqshift_L1 is not None
+
+def tests_reqshift_2():
+    assert type(reqshift_H1) == np.ndarray 
+    assert type(reqshift_L1) == np.ndarray
     
