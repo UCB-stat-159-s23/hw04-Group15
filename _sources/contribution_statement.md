@@ -1,4 +1,4 @@
-Jenny: Repository Structure, Installable Package & GitHub Repository
+Jenny: Repository Structure & Installable Package
 
 
 Zac: Create 'utils.py' & Make New Plotting Utility in 'utils.py'
