@@ -17,9 +17,7 @@ from scipy.io import wavfile
 import matplotlib.mlab as mlab
 
 
-
 # function to whiten data
-
 def whiten(strain, interp_psd, dt):
     Nt = len(strain)
     freqs = np.fft.rfftfreq(Nt, dt)
@@ -34,12 +32,9 @@ def whiten(strain, interp_psd, dt):
     return white_ht
 
 # function to keep the data within integer limits, and write to wavfile:
-
 def write_wavfile(filename,fs,data):
     d = np.int16(data/np.max(np.abs(data)) * 32767 * 0.9)
     wavfile.write(filename,int(fs), d)
-
-    
 
 # function that shifts frequency of a band-passed signal
 def reqshift(data,fshift=100,sample_rate=4096):
@@ -54,10 +49,6 @@ def reqshift(data,fshift=100,sample_rate=4096):
     y[0:nbins]=0.
     z = np.fft.irfft(y)
     return z
-
-
-
-
 
 # plot function
 def make_plot(det,strain_H1_whitenbp,strain_L1_whitenbp,template_match,time,timemax,SNR,eventname,plottype,tevent,template_fft,datafreq,d_eff,freqs,data_psd,fs):
