@@ -55,10 +55,14 @@ def test_whiten():
     # add more tests for whiten
     
 def test_write_wavfile():
-    subject = readligo.FileList("./audio")
-    files = subject.list
-    assert eventname+"_H1_whitenbp.wav" in files # test if the wavfile is created or not
-    assert eventname+"_L1_whitenbp.wav" in files
+    audio_list = ["GW150914_H1_shifted.wav",
+                 "GW150914_H1_whitenbp.wav",
+                 "GW150914_L1_shifted.wav",
+                 "GW150914_L1_whitenbp.wav",
+                 "GW150914_template_shifted.wav",
+                 "GW150914_template_whiten.wav"]
+    assert eventname+"_H1_whitenbp.wav" in audio_list # test if the wavfile is created or not
+    assert eventname+"_L1_whitenbp.wav" in audio_list
     
 def test_reqshift_1():
     fs = 4096
@@ -69,6 +73,10 @@ def test_reqshift_1():
     assert reqshift_L1 is not None
 
 def tests_reqshift_2():
+    fs = 4096
+    fshift = 400
+    reqshift_H1 = utils.reqshift(strain_H1_whitenbp, fshift, fs)
+    reqshift_L1 = utils.reqshift(strain_L1_whitenbp, fshift, fs)
     assert type(reqshift_H1) == np.ndarray 
     assert type(reqshift_L1) == np.ndarray
     
