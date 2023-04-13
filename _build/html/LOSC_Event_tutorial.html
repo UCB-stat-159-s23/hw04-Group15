@@ -63,7 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'LOSC_Event_tutorial';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="contribution_statement.html" />
+    <link rel="prev" title="hw04-group15" href="README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -129,7 +129,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="contribution_statement.html">
+<a class="navbar-brand logo" href="README.html">
   
   
   
@@ -149,8 +149,8 @@ const thebe_selector_output = ".output, .cell_output"
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="contribution_statement.html">
-                    <no title>
+                <a class="reference internal" href="README.html">
+                    hw04-group15
                 </a>
             </li>
         </ul>
@@ -1216,6 +1216,10 @@ The LIGO Scientific Collaboration, the Virgo Collaboration, <a class="reference 
           <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">det</span><span class="p">,</span><span class="n">timemax</span><span class="p">,</span><span class="n">SNRmax</span><span class="p">,</span><span class="n">d_eff</span><span class="p">,</span><span class="n">horizon</span><span class="p">))</span>
 
     <span class="k">if</span> <span class="n">make_plots</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">det</span> <span class="o">==</span> <span class="s1">&#39;L1&#39;</span><span class="p">:</span> 
+            <span class="n">template_L1</span> <span class="o">=</span> <span class="n">template_match</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">template_H1</span> <span class="o">=</span> <span class="n">template_match</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">utils</span><span class="o">.</span><span class="n">make_plot</span><span class="p">(</span><span class="n">det</span><span class="p">,</span><span class="n">strain_H1_whitenbp</span><span class="p">,</span><span class="n">strain_L1_whitenbp</span><span class="p">,</span><span class="n">template_match</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="n">timemax</span><span class="p">,</span><span class="n">SNR</span><span class="p">,</span>
                         <span class="n">eventname</span><span class="p">,</span><span class="n">plottype</span><span class="p">,</span><span class="n">tevent</span><span class="p">,</span><span class="n">template_fft</span><span class="p">,</span><span class="n">datafreq</span><span class="p">,</span><span class="n">d_eff</span><span class="p">,</span>
                         <span class="n">freqs</span><span class="p">,</span><span class="n">data_psd</span><span class="p">,</span><span class="n">fs</span><span class="p">)</span>
@@ -1510,17 +1514,8 @@ GPS start, GPS stop and length of segment 0 in this file =  1126259446.0 1126259
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">23</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">irange</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">((</span><span class="n">times</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">times</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">))</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># construct a data structure for a csv file:</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">dat</span> <span class="o">=</span> <span class="p">[</span><span class="n">times</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span> <span class="n">strain_H1_whitenbp</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span><span class="n">strain_L1_whitenbp</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span>
-<span class="ne">----&gt; </span><span class="mi">7</span>       <span class="n">template_H1</span><span class="p">[</span><span class="n">irange</span><span class="p">],</span><span class="n">template_L1</span><span class="p">[</span><span class="n">irange</span><span class="p">]</span> <span class="p">]</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">datcsv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1"># make a csv filename, header, and format</span>
-
-<span class="ne">NameError</span>: name &#39;template_H1&#39; is not defined
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wrote whitened data to file figures/GW150914_data.csv
+You can download this file by clicking &#39;jupyter&#39; in the top left corner, or using the &#39;data&#39; menu in Azure.
 </pre></div>
 </div>
 </div>
@@ -1560,12 +1555,12 @@ GPS start, GPS stop and length of segment 0 in this file =  1126259446.0 1126259
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="contribution_statement.html"
+       href="README.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">hw04-group15</p>
       </div>
     </a>
 </div></div>

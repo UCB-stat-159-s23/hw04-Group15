@@ -2,6 +2,6 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: contribution_statement
+root: README.md
 chapters:
 - file: LOSC_Event_tutorial
