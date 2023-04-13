@@ -123,3 +123,4 @@ def make_plot(det,strain_H1_whitenbp,strain_L1_whitenbp,template_match,time,time
     plt.legend(loc='upper left')
     plt.title(det+' ASD and template around event')
     plt.savefig("figures/"+eventname+"_"+det+"_matchfreq."+plottype)
+    
