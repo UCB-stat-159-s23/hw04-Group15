@@ -31,7 +31,7 @@ conf.py: _config.yml _toc.yml
 
 .PHONY : clean
 clean:
-	rm -rf figures
-	rm -rf audio 
-	rm -rf _build/html/
-	rm -rf _build
+	rm -rf figures/*
+	rm -rf audio/* 
+	rm -rf _build/html/*
+	rm -rf _build/*
